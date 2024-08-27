@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id('karyawan_id');
-            $table->string('nip', 20) ->unique();
+            $table->string('karwayan_nip', 20)->unique();
             $table->string('karyawan_nama', 100);
+            $table->string('password');
             $table->timestamps();
         });
     }
