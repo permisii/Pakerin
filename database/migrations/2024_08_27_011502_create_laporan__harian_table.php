@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('laporan_Harian', function (Blueprint $table) {
-            $table->id();
+            $table->id('laporan_id');
+            $table->string('masalah', 500);
+            $table->string('penanganan', 500);
+            $table->string('material', 500);
+            $table->integer('satuan');
+            $table->string('hasil_pengerjaan', 500);
+            $table->string('persen')->default(' %');
             $table->timestamps();
         });
     }

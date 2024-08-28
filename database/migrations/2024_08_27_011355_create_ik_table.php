@@ -12,9 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ik', function (Blueprint $table) {
-            $table->id();
+            $table->id('ik_id');
+            $table->string('no_PK', 20)->unique();
+            $table->unsignedBigInteger('karyawan_id')->index();
+            $table->string('daftar_pekerjaan', 500);
+            $table->date('tanggal');
             $table->timestamps();
+
+            $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->onDelete('cascade');
+
         });
+
     }
 
     /**

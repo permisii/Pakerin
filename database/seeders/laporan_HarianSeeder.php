@@ -12,6 +12,10 @@ class laporan_HarianSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $data = [
+            [
+                
+            ],
+        ];
     }
 }
