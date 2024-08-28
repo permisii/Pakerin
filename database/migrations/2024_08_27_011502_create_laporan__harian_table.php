@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('laporan_Harian', function (Blueprint $table) {
             $table->id('laporan_id');
+            $table->unsignedBigInteger('karyawan_id')->index();
+            $table->unsignedBigInteger('no_PK')->index();
             $table->string('masalah', 500);
             $table->string('penanganan', 500);
             $table->string('material', 500);

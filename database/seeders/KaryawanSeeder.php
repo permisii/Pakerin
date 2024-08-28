@@ -16,14 +16,12 @@ class KaryawanSeeder extends Seeder
     {
         $data = [
             [
-            'karyawan_id' => 1,
             'karyawan_nip' => 123,
             'karyawan_nama' => 'Jakawa',
             'password' => Hash::make('12345'),
 
         ],
         [
-            'karyawan_id' => 2,
             'karyawan_nip' => 456,
             'karyawan_nama' => 'Jikiwi',
             'password' => Hash::make('12345'),
