@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Karyawan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,17 +17,19 @@ class KaryawanSeeder extends Seeder
     {
         $data = [
             [
-            'karyawan_nip' => 123,
-            'karyawan_nama' => 'Jakawa',
-            'password' => Hash::make('12345'),
+                'nip' => 123,
+                'nama' => 'Jakawa',
+                'password' => '12345',
+            ],
+            [
+                'nip' => 456,
+                'nama' => 'Jikiwi',
+                'password' => '12345',
+            ],
+        ];
 
-        ],
-        [
-            'karyawan_nip' => 456,
-            'karyawan_nama' => 'Jikiwi',
-            'password' => Hash::make('12345'),
-        ],
-    ];
-    DB::table('karyawan')->insert($data);
+        foreach ($data as $d) {
+            Karyawan::create($d);
+        }
     }
 }

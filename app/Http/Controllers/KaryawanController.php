@@ -2,34 +2,86 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use App\Http\Requests\Karyawan\StoreKaryawanRequest;
+use App\Http\Requests\Karyawan\UpdateKaryawanRequest;
+use App\Models\Karyawan;
+use Illuminate\Http\Request;
 
-class Controller extends BaseController
+class KaryawanController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $breadcrumb = (object) [
-            'title' => 'Manajemen User',
-            'list' => ['Home', 'User']
-        ];
+        $data = Karyawan::all();
 
-        $page = (object) [
-            'title' => 'Daftar User yang terdaftar dalam sistem',
-        ];
+        return view('karyawan.index', compact('data'));
+    }
 
-        $activeMenu = 'Karyawan';
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('karyawan.create');
+    }
 
-        // $nip = KaryawanModel::all();
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreKaryawanRequest $request)
+    {
+        Karyawan::create($request->validated());
 
+        return redirect()
+            ->route('karyawans.index')
+            ->with('success', 'Karyawan berhasil ditambah');
+    }
 
-        // return view('karyawan.index', [
-        //     'breadcrumb' => $breadcrumb,
-        //     'page' => $page,
-        //     'level' => $level,
-        //     'activeMenu' => $activeMenu,
-        //     'user' => KaryawanModel::all()
-        // ]);
+    /**
+     * Display the specified resource.
+     */
+    public function show(Karyawan $karyawan)
+    {
+        return view('karyawan.show', compact('karyawan'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Karyawan $karyawan)
+    {
+        return view('karyawan.edit', compact('karyawan'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateKaryawanRequest $request, Karyawan $karyawan)
+    {
+        $data = $request->validated();
+
+        if(empty($data['password'])) {
+            unset($data['password']);
+        }
+
+        $karyawan->update($data);
+
+        return redirect()
+            ->route('karyawans.index')
+            ->with('success', "karyawan dengan nip {$karyawan->nip} berhasil diubah");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Karyawan $karyawan)
+    {
+        $karyawan->delete();
+
+        return redirect()
+            ->route('karyawans.index')
+            ->with('success', "karyawan dengan nip {$karyawan->nip} berhasil dihapus");
     }
 }
