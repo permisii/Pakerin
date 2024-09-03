@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Karyawan extends Authenticatable
 {
@@ -25,4 +26,9 @@ class Karyawan extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function menuAkses(): HasMany
+    {
+        return $this->hasMany(MenuAkses::class, 'id_karyawan');
+    }
 };
