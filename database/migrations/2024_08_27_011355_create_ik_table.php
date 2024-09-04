@@ -12,17 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ik', function (Blueprint $table) {
-            $table->id('ik_id');
-            $table->string('no_PK', 20)->unique();
-            // $table->unsignedBigInteger('karyawan_id')->index();
-            $table->string('daftar_pekerjaan', 500);
-            $table->date('tanggal');
+            $table->id();
+            $table->string('id_karyawan', 48)->index();
+            $table->string('tanggal', 100);
             $table->timestamps();
-            $table->foreignId('karyawan_id')->constrained();
-            // $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->onDelete('cascade');
-
         });
-
     }
 
     /**
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ik');
+        Schema::dropIfExists('karyawan');
     }
 };

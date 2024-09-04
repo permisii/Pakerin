@@ -25,6 +25,17 @@ class MenuAksesSeeder extends Seeder
                 'created_by' => 1,
                 'updated_by' => 1
             ],
+            [
+                'id_menu' => 2,
+                'id_karyawan' => 1,
+                'create' => 1,
+                'read' => 1,
+                'update' => 1,
+                'delete' => 1,
+                'etc' => 1,
+                'created_by' => 1,
+                'updated_by' => 1
+            ],
         ];
 
         foreach ($akses as $a) {

@@ -3,7 +3,7 @@
     <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('dist/img/favicons.png') }}" alt="AdminLTE Logo" class="brand-image img-circle"
             style="opacity: .8">
-        <span class="brand-text"><b>Pakerin</b>CMMS</span>
+        <span class="brand-text"><b>Laporan</b>Harian</span>
     </a>
 
     <!-- Sidebar -->
@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ auth()->user()->nama }}</a>
+                <a href="#" class="d-block"> {{ auth()->user()->nama ?? '' }} </a>
             </div>
         </div>
 
@@ -55,9 +55,22 @@
                     </a>
                 </li>
 
-                @foreach ($menus as $menu)
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{ route('ik.index') }}"
+                                class="nav-link {{ request()->routeIs('ik') ? 'active' : '' }} ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Instruksi Kerja
+                                </p>
+                            </a>
+                        </li>
+                        
+                @foreach ($menus ?? [] as $menu)
                     <li class="nav-item">
-                        <a href="{{ route($menu->url) }}"
+                        <a href="{{ route($menu->url ) }}"
                             class="nav-link {{ request()->routeIs($menu->url) ? 'active' : '' }} ">
                             <i class="nav-icon {{ $menu->icon }}"></i>
                             <p>
@@ -66,6 +79,7 @@
                         </a>
                     </li>
                 @endforeach
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
